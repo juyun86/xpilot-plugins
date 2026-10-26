@@ -52,6 +52,10 @@ Trust comes from this reviewed repository, so only merge what you have read.
 
 ## Plugins
 
+- [ars408](plugins/ars408/README.md): 独立 ARS408 雷达接收、追踪和诊断，已接入宿主
+  card_context 运动/校准 API。0.1.0 不发送 CAN，仍需现有雷达运动输入；
+  尚不能替代旧系统完整雷达链路。导航、超车不是此插件的依赖。
+
 - [tesnav](plugins/tesnav/README.md): 特会开手机导航、推荐车道显示与默认关闭的导航减速；
   需要宿主 navigation_ingress API。当前不包含自动变道、打灯或导航模型输入。
   这描述的是 0.1.1 插件子集；用户确认旧 C3XL 的变道、打灯和超车已经能用，

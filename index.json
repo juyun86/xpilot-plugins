@@ -14,6 +14,18 @@
       "platform": null
     },
     {
+      "id": "ars408",
+      "name": "ARS408 Radar Receiver",
+      "version": "0.1.0",
+      "api": 1,
+      "category": "data_source",
+      "author": "juyun86",
+      "description": "Independent ARS408 target receiver with vendor quality, cycle tracking and diagnostics. Requires existing radar motion input; this package does not transmit CAN or configure the sensor.",
+      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/ars408-0.1.0.tar.gz",
+      "sha256": "42c177d79cf3c61beba16e369487c133b18cadc7a7a6f0a86c2a3536e94e770a",
+      "platform": null
+    },
+    {
       "id": "auto_speed",
       "name": "Auto Speed Limit",
       "version": "1.1.0",

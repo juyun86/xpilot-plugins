@@ -1,0 +1,20 @@
+{
+  "id": "ars408",
+  "name": "ARS408 Radar Receiver",
+  "version": "0.1.0",
+  "api": 1,
+  "use": "onroad",
+  "category": "data_source",
+  "entry": "plugin:ARS408",
+  "author": "juyun86",
+  "description": "Independent ARS408 target receiver with vendor quality, cycle tracking and diagnostics. Requires existing radar motion input; this package does not transmit CAN or configure the sensor.",
+  "priority": 100,
+  "enable_param": "ExtARS408Enabled",
+  "claims": ["source:radar"],
+  "requires": {"hooks": ["radar_interface", "card_context"]},
+  "settings": [{"key": "ExtARS408Inverted", "label": "Radar mounted upside down"}],
+  "params": {
+    "ExtARS408Enabled": {"type": "BOOL", "default": "0"},
+    "ExtARS408Inverted": {"type": "BOOL", "default": "1"}
+  }
+}
