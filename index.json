@@ -62,6 +62,18 @@
       "platform": null
     },
     {
+      "id": "chinese_ui",
+      "name": "Chinese UI",
+      "version": "1.0.0",
+      "api": 1,
+      "category": "tools",
+      "author": "xpilot",
+      "description": "Simplified Chinese UI with a bundled font. Enable or disable, then restart the UI. No driving behavior changes.",
+      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/chinese_ui-1.0.0.tar.gz",
+      "sha256": "292c781d0c24dc249ded2b49c5d5790e04994817a8586c7959fb22bbfb453829",
+      "platform": null
+    },
+    {
       "id": "clock_tile",
       "name": "Clock Tile",
       "version": "1.0.2",

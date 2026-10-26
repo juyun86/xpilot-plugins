@@ -1,0 +1,16 @@
+{
+  "id": "chinese_ui",
+  "name": "Chinese UI",
+  "version": "1.0.0",
+  "api": 1,
+  "use": "both",
+  "category": "tools",
+  "entry": "plugin:ChineseUI",
+  "author": "xpilot",
+  "description": "Simplified Chinese UI with a bundled font. Enable or disable, then restart the UI. No driving behavior changes.",
+  "priority": 100,
+  "enable_param": "XpilotChineseUI",
+  "claims": ["role:ui.language"],
+  "requires": {"hooks": ["ui_language"]},
+  "params": {"XpilotChineseUI": {"type": "BOOL", "default": "0"}}
+}
