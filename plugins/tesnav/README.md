@@ -1,6 +1,6 @@
 # TesNav Navigation / 特会开导航
 
-Version 0.1.0 combines phone guidance, recommended-lane display and optional
+Version 0.1.1 combines phone guidance, recommended-lane display and optional
 turn slowdown in one plugin. It does not steer, change lanes, send CAN, control
 indicators, stop at traffic lights or feed a navigation driving model.
 

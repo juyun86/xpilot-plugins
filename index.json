@@ -64,13 +64,13 @@
     {
       "id": "chinese_ui",
       "name": "Chinese UI",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "api": 1,
       "category": "tools",
       "author": "xpilot",
       "description": "Simplified Chinese UI with a bundled font. Enable or disable, then restart the UI. No driving behavior changes.",
-      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/chinese_ui-1.1.1.tar.gz",
-      "sha256": "5959eae0a7e4ca2de84f56e5dfa23bf5df1c90cd81a7c78d02818bc81afe2f39",
+      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/chinese_ui-1.1.2.tar.gz",
+      "sha256": "1ab27e97186471bb4cf41eb8b622fea306b32877cde2d973bf0ef099a9d381ff",
       "platform": null
     },
     {
@@ -226,13 +226,13 @@
     {
       "id": "tesnav",
       "name": "TesNav Navigation",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "api": 1,
       "category": "navigation",
       "author": "juyun86",
       "description": "TesNav phone guidance and recommended-lane display, with optional turn slowdown. No automatic lane changes or steering. Controlled private LAN only.",
-      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/tesnav-0.1.0.tar.gz",
-      "sha256": "7e1bc347a7f0913fea7820b0cadc7f14c24162be3cf6e35bf168ba101a3f88fe",
+      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/tesnav-0.1.1.tar.gz",
+      "sha256": "fb303970688957b92b876013722bd3c73d772a25882909a353f3bf9df738fe2f",
       "platform": null
     },
     {
