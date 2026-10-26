@@ -54,6 +54,9 @@ Trust comes from this reviewed repository, so only merge what you have read.
 
 - [tesnav](plugins/tesnav/README.md): 特会开手机导航、推荐车道显示与默认关闭的导航减速；
   需要宿主 navigation_ingress API。当前不包含自动变道、打灯或导航模型输入。
+  这描述的是 0.1.1 插件子集；用户确认旧 C3XL 的变道、打灯和超车已经能用，
+  完整迁移按[导航与多型号雷达拆分约定](https://github.com/juyun86/xpilot/blob/xpilot/docs/design/tesnav-radar-separation.md)
+  保留这些功能。导航维持一个插件，雷达驱动按实际型号独立，当前尚未完成该完整迁移。
 
 - [starlink](plugins/starlink/README.md): mihomo VPN internet access with an offline ARM64 core, local configuration,
   phone import and scoped routing cleanup. Requires the host ui_glyphs capability; not a satellite service.
