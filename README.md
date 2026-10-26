@@ -41,12 +41,17 @@ tools/build_index.py     builds dist/ and index.json; --check verifies they are 
 - Claims match the code: every CAN address sent, hook used and process started is claimed; nothing reads
   or writes outside its own params and messages; no network access unless it is an external compute provider.
 - Control plugins (lateral, longitudinal, lane change, engagement, ...) state their floors and failure behaviour.
-- No obfuscated code, no downloaded or generated code at runtime, no subprocess or shell use.
+- No obfuscated code, no downloaded or generated code at runtime, and no shell or arbitrary-command interfaces.
+  Reviewed network/system plugins may use fixed-command subprocesses with declared process/resource claims.
+  Starlink additionally requires parked activation, an isolated core UID, scoped privileged actions and verified disable/crash cleanup.
 
 Archives are not signed yet: the sha256 in `index.json` only protects against corrupt or swapped downloads.
 Trust comes from this reviewed repository, so only merge what you have read.
 
 ## Plugins
+
+- [starlink](plugins/starlink/README.md): mihomo VPN internet access with an offline ARM64 core, local configuration,
+  phone import and scoped routing cleanup. Requires the host ui_glyphs capability; not a satellite service.
 
 - [UI 语言包 API](docs/ui-language-api.md)：声明、返回格式、生效时机、校验及发布检查。
 - [chinese_ui](plugins/chinese_ui/README.md)：简体中文语言插件，字体和词条随包提供。

@@ -1,0 +1,9 @@
+{
+  "version": "v1.19.32",
+  "size": 57409662,
+  "sha256": "c80df2ca5159567804da883401e0118908fc1155e05df2baf3dbd4d3ecfc3754",
+  "compressed_sha256": "9dd862e28b46ff7d775f169cceebc28deccaa0a9e804237d421cd2571e0caba0",
+  "upstream": "https://github.com/MetaCubeX/mihomo/releases/tag/v1.19.32",
+  "source": "https://github.com/MetaCubeX/mihomo/tree/v1.19.32",
+  "asset": "mihomo-linux-arm64-v1.19.32.gz"
+}
