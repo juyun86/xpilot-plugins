@@ -1,7 +1,7 @@
 {
   "id": "starlink",
   "name": "Starlink",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "api": 1,
   "use": "both",
   "category": "tools",

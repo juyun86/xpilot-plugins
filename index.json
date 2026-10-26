@@ -199,13 +199,13 @@
     {
       "id": "starlink",
       "name": "Starlink",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "api": 1,
       "category": "tools",
       "author": "xpilot",
       "description": "Internet access using the existing mihomo VPN configuration. Local networks stay direct. Includes an offline ARM64 core, node selection and phone import. Not a satellite service.",
-      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/starlink-1.1.0.tar.gz",
-      "sha256": "179115f2673cd430c6313fe3b901faf637946dfc18c196ed2ff3ead865c521c3",
+      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/starlink-1.1.1.tar.gz",
+      "sha256": "fb0e5a0d420bca465d42252b64c9102a05cab5b7e77e16b18e33624ef30cc40b",
       "platform": {
         "machine": "aarch64",
         "python": "cpython-312"

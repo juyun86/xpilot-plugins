@@ -30,6 +30,20 @@ with tempfile.TemporaryDirectory() as directory, patch.object(backend, 'ROOT', P
   except RuntimeError:
     pass
 assert not state['selected'], 'queued request mutated network after parking ended'
+state.update(parked=True, selected=False)
+def delayed_nodes(path, payload=None, **_):
+  if payload is None:
+    state['parked'] = False
+    return {'proxies': {'C3-PROXY': {'all': ['fixture']}}}
+  state['selected'] = True
+  return {}
+with tempfile.TemporaryDirectory() as directory, patch.object(backend, 'ROOT', Path(directory)), \
+     patch.object(backend, 'parked', parked), patch.object(backend, 'api', delayed_nodes):
+  try:
+    backend.select_node('fixture')
+  except RuntimeError:
+    pass
+assert not state['selected'], 'slow node lookup allowed an onroad selection'
 tree = ast.parse((ROOT / 'ui.py').read_text(encoding='utf-8'))
 tile = next(n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == 'StarlinkTile')
 assert 'read_text' not in ast.unparse(tile), 'tile reads private stale state'

@@ -44,6 +44,8 @@ def api(path, payload=None, timeout=4):
   data = None if payload is None else json.dumps(payload).encode()
   if data: headers['Content-Type'] = 'application/json'
   req = urllib.request.Request('http://127.0.0.1:17891' + path, data=data, headers=headers, method='GET' if payload is None else 'PUT')
+  if payload is not None:
+    parked()
   with urllib.request.build_opener(urllib.request.ProxyHandler({})).open(req, timeout=timeout) as response:
     content = response.read(2_000_001); assert len(content) <= 2_000_000; return json.loads(content) if content else {}
 
@@ -147,6 +149,7 @@ def select_node(name):
   parked()
   names = api('/proxies').get('proxies', {}).get('C3-PROXY', {}).get('all', [])
   assert name in names, 'Node list changed; refresh it'
+  parked()
   api('/proxies/C3-PROXY', {'name': name})
   (ROOT/'selected_node').write_text(name)
   (ROOT/'selected_node').chmod(0o600)
