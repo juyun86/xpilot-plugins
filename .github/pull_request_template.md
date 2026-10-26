@@ -4,11 +4,11 @@
 
 ## Claims
 
-<!-- Every claim the plugin takes and why. CAN sends need a matching safety.json entry in onemiless/xpilot. -->
+<!-- Every claim the plugin takes and why. CAN sends need a matching safety.json entry in juyun86/xpilot. -->
 
 ## Verification
 
-- [ ] This only changes plugins. System changes go to onemiless/xpilot.
+- [ ] This only changes plugins. System changes go to juyun86/xpilot.
 - [ ] `python3 tools/build_index.py` run; `dist/` and `index.json` committed
 - [ ] Plugin tests and store_e2e pass locally
 - [ ] Tested on a device (plugin version and xpilot commit on the device: )
