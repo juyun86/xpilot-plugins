@@ -45,7 +45,7 @@ tools/build_index.py     builds dist/ and index.json; --check verifies they are 
   requires the explicit capability contract in the highest development policy; it is not granted by a category name.
 - Control plugins (lateral, longitudinal, lane change, engagement, ...) state their floors and failure behaviour.
 - No obfuscated code, no downloaded or generated code at runtime, and no shell or arbitrary-command interfaces.
-  Network/system capabilities require the documented host API, permission and lifecycle contract specified in the highest development policy. A process/role claim or fixed command alone does not provide that contract. The previous Starlink-specific subprocess exception is withdrawn; its current implementation remains pending compliance work.
+  Network/system capabilities require the documented host API, permission and lifecycle contract specified in the highest development policy. A process/role claim or fixed command alone does not provide that contract. The previous Starlink-specific subprocess exception is withdrawn. Starlink now uses the host VPN API; validation results and remaining device boundaries are recorded in section 9 of the canonical policy.
 
 Archives are not signed yet: the sha256 in `index.json` only protects against corrupt or swapped downloads.
 Trust comes from this reviewed repository, so only merge what you have read.
