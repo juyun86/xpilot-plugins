@@ -1,6 +1,6 @@
 # Chinese UI
 
-简体中文界面语言插件。安装并启用后重启界面生效，关闭或卸载后重启恢复原语言；
+简体中文界面语言插件。安装、升级、启停或卸载后完整重启软件或设备生效，关闭后恢复原语言；
 不修改系统 LanguageSetting，不增加进程，不发送 CAN，也不改变驾驶行为。
 
 宿主需要提供 ui_language hook 和 role:ui.language 的独占裁决。
@@ -12,3 +12,9 @@
 字体来自 https://github.com/notofonts/noto-cjk/tree/main/Sans ，遵循随包 OFL.txt。
 旧版 sunnypilot 简体中文词条作为基础；新增 xpilot 菜单及插件词条保存在同一字典。
 更新词条时必须校验格式占位符，并对实际设备的中文字体、换行和开关回退进行检查。
+
+接口说明见仓库 docs/ui-language-api.md；完整协议见系统仓库
+https://github.com/onemiless/xpilot/blob/xpilot/docs/design/xpilot-ui-language-api.md 。
+语言包提供 code、font、translations，不热更新，不自动翻译未标记的界面原文。
+校验失败会记录故障并沿用基础语言，插件开关不会被自动关闭。
+功能开关和软件页的动态文字必须先翻译模板再填值；原始更新状态、模式索引与颜色键保持不变。

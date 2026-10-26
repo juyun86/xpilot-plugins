@@ -64,13 +64,13 @@
     {
       "id": "chinese_ui",
       "name": "Chinese UI",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "api": 1,
       "category": "tools",
       "author": "xpilot",
       "description": "Simplified Chinese UI with a bundled font. Enable or disable, then restart the UI. No driving behavior changes.",
-      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/chinese_ui-1.0.1.tar.gz",
-      "sha256": "83dbd1019537de9730fe2e95eabb53b263aadcc434a4f77581a34cec19afa6b2",
+      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/chinese_ui-1.0.2.tar.gz",
+      "sha256": "afebfcf9d761c069ff95562d968dd3775ae121fad906d6fc34ee3223bef82e79",
       "platform": null
     },
     {

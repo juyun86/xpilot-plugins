@@ -48,6 +48,9 @@ Trust comes from this reviewed repository, so only merge what you have read.
 
 ## Plugins
 
+- [UI 语言包 API](docs/ui-language-api.md)：声明、返回格式、生效时机、校验及发布检查。
+- [chinese_ui](plugins/chinese_ui/README.md)：简体中文语言插件，字体和词条随包提供。
+
 - `plugins/overspeed_warning`: example. Alerts category, one store-backed setting, an `alert` claim, a relative import.
 - `plugins/tn_long`: TN longitudinal (TN-NoDEC) as a `long_planner`, with prebuilt acados solvers. See its README.
 - `plugins/tesla_mixed_control`: dzid26 angle-based cooperative steering. Enable while parked and restart;
