@@ -1,9 +1,9 @@
 # 界面语言插件接入
 
 完整接口以系统仓库的
-[UI 语言包插件 API](https://github.com/onemiless/xpilot/blob/xpilot/docs/design/xpilot-ui-language-api.md)
+[UI 语言包插件 API](https://github.com/juyun86/xpilot/blob/xpilot/docs/design/xpilot-ui-language-api.md)
 为准。接口由宿主提供，语言内容由本仓库插件提供。
-链接对应文档提交发布后可在线访问。
+开发时先读 [Xpilot 最高开发规范](https://github.com/juyun86/xpilot/blob/xpilot/DEVELOPMENT_RULES.md)。接口文档描述实现，不豁免最高规范；已记录的兼容与命名问题须单独整改。
 
 ## 能力声明
 

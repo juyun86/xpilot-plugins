@@ -1,7 +1,9 @@
 # xpilot-plugins
 
-Plugin repository for [xpilot](https://github.com/onemiless/xpilot) (Tesla-only sunnypilot fork).
+Plugin repository for [xpilot](https://github.com/juyun86/xpilot) (Tesla-only sunnypilot fork; upstream: onemiless).
 Devices list this repository under Settings → Plugins → Plugin Store, install while parked, and apply on restart.
+
+Development starts with the canonical [Xpilot highest development policy](https://github.com/juyun86/xpilot/blob/xpilot/DEVELOPMENT_RULES.md) and this repository's [AGENTS.md](AGENTS.md). That policy resolves conflicting project documentation. Current implementation gaps are tracked in its section 8; listing a plugin here does not establish compliance.
 
 插件仓库：xpilot 设备在 设置 → Plugins → Plugin Store 里浏览这里的插件，停车时安装，重启后生效。
 接口、类别、资源声明和底线规则见 xpilot 仓库根目录的 `XPILOT.md`。
@@ -38,12 +40,12 @@ tools/build_index.py     builds dist/ and index.json; --check verifies they are 
 
 - `python3 tools/build_index.py --check` passes on the PR head (archives match the reviewed source).
 - From an xpilot checkout: `python3 tools/sp_tesla_e2e/store_e2e.py --repo <this checkout>` passes.
-- Claims match the code: every CAN address sent, hook used and process started is claimed; nothing reads
-  or writes outside its own params and messages; no network access unless it is an external compute provider.
+- Claims match the code: every CAN address sent, hook used and managed process started is claimed. Params,
+  messages, private files and network operations stay within the documented host API contract. Network access
+  requires the explicit capability contract in the highest development policy; it is not granted by a category name.
 - Control plugins (lateral, longitudinal, lane change, engagement, ...) state their floors and failure behaviour.
 - No obfuscated code, no downloaded or generated code at runtime, and no shell or arbitrary-command interfaces.
-  Reviewed network/system plugins may use fixed-command subprocesses with declared process/resource claims.
-  Starlink additionally requires parked activation, an isolated core UID, scoped privileged actions and verified disable/crash cleanup.
+  Network/system capabilities require the documented host API, permission and lifecycle contract specified in the highest development policy. A process/role claim or fixed command alone does not provide that contract. The previous Starlink-specific subprocess exception is withdrawn; its current implementation remains pending compliance work.
 
 Archives are not signed yet: the sha256 in `index.json` only protects against corrupt or swapped downloads.
 Trust comes from this reviewed repository, so only merge what you have read.
