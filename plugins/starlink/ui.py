@@ -15,7 +15,7 @@ from openpilot.system.ui.widgets.keyboard import Keyboard
 from openpilot.system.ui.widgets.label import gui_label
 from openpilot.system.ui.widgets.list_view import button_item, text_item
 from openpilot.system.ui.widgets.scroller_tici import Scroller
-from openpilot.tesla.plugins import view
+from openpilot.tesla.plugins import PluginMsgs, view
 from openpilot.tesla.ui.pages.base import ListPage, Header
 from openpilot.tesla.ui.tile import Tile
 from openpilot.tesla.ui.tiles import TileSpec
@@ -183,12 +183,16 @@ class PairPage(Widget):
 
 
 class StarlinkTile(Tile):
-  SPEC = TileSpec('starlink', 'Starlink', sizes=('small', 'medium', 'wide'), show='offroad', hz=.2, order=95)
+  SPEC = TileSpec('starlink', 'Starlink', sizes=('small', 'medium', 'wide'), show='offroad', hz=1, order=95)
   PAGE = StarlinkPage
+
+  def __init__(self):
+    super().__init__()
+    self.messages = PluginMsgs()
 
   def state(self, sm):
     try:
-      state = json.loads((client.ROOT/'starlink-status.json').read_text())
+      state = self.messages.fresh('network.vpn').get('starlink', {})
       return bool(state.get('gateway'))
     except (OSError, ValueError):
       return False

@@ -20,7 +20,7 @@ def script(name):
 def call(operation, value=None, timeout=120):
   if operation not in {'status', 'labels', 'preflight', 'start', 'stop', 'cleanup', 'restart', 'import', 'nodes', 'select', 'measure', 'fastest', 'test'}:
     raise ValueError('Unknown operation')
-  env = {**os.environ, 'STARLINK_GATEWAY': script('gateway.py')}
+  env = {**os.environ, 'PYTHONPATH': str(PACKAGE.parent) + os.pathsep + os.environ.get('PYTHONPATH', '')}
   process = subprocess.Popen(['/usr/bin/python3', script('backend.py'), operation], stdin=subprocess.PIPE,
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env)
   try:
@@ -41,9 +41,16 @@ def call(operation, value=None, timeout=120):
 def ensure_core():
   ROOT.mkdir(parents=True, exist_ok=True)
   target = ROOT / 'mihomo'
-  if target.exists():
-    return
   metadata = json.loads((PACKAGE / 'core.json').read_text())
+  if target.exists():
+    with target.open('rb') as existing:
+      checksum = hashlib.file_digest(existing, 'sha256').hexdigest()
+    if checksum not in [metadata['sha256'], *metadata.get('compatible_existing_sha256', [])]:
+      raise RuntimeError('Existing VPN core is not an approved build; preserved unchanged')
+    version = subprocess.run([str(target), '-v'], capture_output=True, text=True, timeout=5)
+    if version.returncode or metadata['version'] not in version.stdout:
+      raise RuntimeError('Existing VPN core version is incompatible; preserved unchanged')
+    return
   temporary = ROOT / 'mihomo.starlink-pending'
   digest = hashlib.sha256()
   total = 0
@@ -67,9 +74,8 @@ def ensure_core():
 
 def pair():
   script('backend.py')
-  script('gateway.py')
   env = {**os.environ, 'STARLINK_BACKEND_FD': str(_fds['backend.py']),
-         'STARLINK_GATEWAY_FD': str(_fds['gateway.py'])}
+         'PYTHONPATH': str(PACKAGE.parent) + os.pathsep + os.environ.get('PYTHONPATH', '')}
   result = subprocess.run(['/usr/bin/python3', script('pairing.py'), 'create'], env=env,
                           pass_fds=tuple(_fds.values()), capture_output=True, text=True, timeout=10)
   try:

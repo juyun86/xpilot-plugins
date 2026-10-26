@@ -86,7 +86,8 @@ wait_for(ready)
 assert policy_count() == 1
 record('lost_pid_repair', restored=True)
 
-subprocess.run(['sudo', '-n', '/usr/bin/python3', client.script('gateway.py'), 'disable'], check=True, capture_output=True)
+from openpilot.tesla.network import NetworkVPN
+NetworkVPN('starlink').request('disable')
 wait_for(ready)
 record('tun_repair', automatic=True)
 

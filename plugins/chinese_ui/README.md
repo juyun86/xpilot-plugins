@@ -14,7 +14,10 @@
 更新词条时必须校验格式占位符，并对实际设备的中文字体、换行和开关回退进行检查。
 
 接口说明见仓库 docs/ui-language-api.md；完整协议见系统仓库
-https://github.com/onemiless/xpilot/blob/xpilot/docs/design/xpilot-ui-language-api.md 。
+https://github.com/juyun86/xpilot/blob/xpilot/docs/design/xpilot-ui-language-api.md 。
 语言包提供 code、font、translations，不热更新，不自动翻译未标记的界面原文。
 校验失败会记录故障并沿用基础语言，插件开关不会被自动关闭。
 功能开关和软件页的动态文字必须先翻译模板再填值；原始更新状态、模式索引与颜色键保持不变。
+
+1.1.0 使用 ExtChineseUI，并要求宿主 params_abi=1。新键尚无值时只读兼容旧 XpilotChineseUI；
+显式的新开关值优先，旧文件保留供回退使用。增加文本/秘密输入页和动态设置标题的词条。

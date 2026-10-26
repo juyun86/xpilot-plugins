@@ -6,16 +6,20 @@ import signal
 import time
 
 from openpilot.common.params import Params
+from openpilot.cereal import messaging
 from openpilot.tesla.plugins import view
+from openpilot.tesla import plugins
+from .plugin import Starlink
 from . import client
 
 
-def write_state(data):
+def write_state(data, publisher):
   path = client.ROOT / 'starlink-status.json'
   temporary = path.with_suffix('.pending')
   temporary.write_text(json.dumps(data))
   temporary.chmod(0o600)
   os.replace(temporary, path)
+  plugins.send_msg(publisher, Starlink, 'network.vpn', data, valid_for_ms=6000)
 
 
 def interrupted(*_):
@@ -25,17 +29,17 @@ def interrupted(*_):
 def main():
   params = Params()
   settings = view(params)
+  publisher = messaging.PubMaster(['pluginMsg'])
   signal.signal(signal.SIGINT, interrupted)
   signal.signal(signal.SIGTERM, interrupted)
   try:
     # Cache cleanup code before a store removal can unlink the package.
     client.script('backend.py')
-    client.script('gateway.py')
     client.script('pairing.py')
     client.ensure_core()
     client.call('cleanup')
     lease = {'pid': os.getpid(), 'start': Path(f'/proc/{os.getpid()}/stat').read_text().rsplit(')', 1)[1].split()[19]}
-    path = client.ROOT / 'starlink-lease.json'
+    path = client.ROOT / 'network-lease.json'
     path.write_text(json.dumps(lease))
     path.chmod(0o600)
     initialized, failures = False, 0
@@ -58,11 +62,11 @@ def main():
           else:
             client.call('cleanup')
             state['message'] = 'Reconnect after parking'
-        write_state({key: state.get(key) for key in ('running', 'gateway', 'configured', 'nodes', 'message')})
+        write_state({key: state.get(key) for key in ('running', 'gateway', 'configured', 'nodes', 'message')}, publisher)
         failures = 0
       except Exception:
         # Never persist API payloads, node credentials or raw worker stderr.
-        write_state({'running': False, 'gateway': False, 'message': 'VPN unavailable; retrying'})
+        write_state({'running': False, 'gateway': False, 'message': 'VPN unavailable; retrying'}, publisher)
         try:
           client.call('cleanup', timeout=20)
         except Exception:
@@ -79,4 +83,4 @@ def main():
       client.call('cleanup', timeout=20)
     except Exception:
       pass
-    (client.ROOT/'starlink-lease.json').unlink(missing_ok=True)
+    (client.ROOT/'network-lease.json').unlink(missing_ok=True)

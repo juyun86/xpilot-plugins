@@ -57,7 +57,7 @@ def create():
   path = ROOT/'pair.json'
   path.write_text(json.dumps(state))
   path.chmod(0o600)
-  fds = tuple(int(os.environ[k]) for k in ('STARLINK_BACKEND_FD', 'STARLINK_GATEWAY_FD'))
+  fds = (int(os.environ['STARLINK_BACKEND_FD']),)
   own = os.open(__file__, os.O_RDONLY)
   try:
     with (ROOT/'pair.log').open('ab') as log:
@@ -114,10 +114,9 @@ def serve():
         assert 0 < length <= 2_000_000
         value = json.loads(self.rfile.read(length))['value']
         assert isinstance(value, str)
-        gateway = f"/proc/{os.getpid()}/fd/{os.environ['STARLINK_GATEWAY_FD']}"
         backend = f"/proc/{os.getpid()}/fd/{os.environ['STARLINK_BACKEND_FD']}"
         result = subprocess.run(['/usr/bin/python3', backend, 'import'], input=value, capture_output=True,
-                                text=True, timeout=100, env={**os.environ, 'STARLINK_GATEWAY': gateway})
+                                text=True, timeout=100, env=os.environ)
         response = json.loads(result.stdout.splitlines()[-1])
         if result.returncode:
           return self.send(400, '{"error":"Import failed; check the configuration"}')

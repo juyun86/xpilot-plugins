@@ -64,13 +64,13 @@
     {
       "id": "chinese_ui",
       "name": "Chinese UI",
-      "version": "1.0.3",
+      "version": "1.1.0",
       "api": 1,
       "category": "tools",
       "author": "xpilot",
       "description": "Simplified Chinese UI with a bundled font. Enable or disable, then restart the UI. No driving behavior changes.",
-      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/chinese_ui-1.0.3.tar.gz",
-      "sha256": "d93461b33e99ec10b46644e72d33d4e2137cb9b7a2e35fdfd218e091f47ad785",
+      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/chinese_ui-1.1.0.tar.gz",
+      "sha256": "4222f70edfcbfc0f6fb5afa3e512fbdc08a2eec2fa0d07e05d01049c6c6e3161",
       "platform": null
     },
     {
@@ -199,13 +199,13 @@
     {
       "id": "starlink",
       "name": "Starlink",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "api": 1,
       "category": "tools",
       "author": "xpilot",
       "description": "Internet access using the existing mihomo VPN configuration. Local networks stay direct. Includes an offline ARM64 core, node selection and phone import. Not a satellite service.",
-      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/starlink-1.0.0.tar.gz",
-      "sha256": "5c64f4897b31e89b798f70a183cac55b2d6a45126e528c9cfc566d23330737fa",
+      "url": "https://raw.githubusercontent.com/juyun86/xpilot-plugins/main/dist/starlink-1.1.0.tar.gz",
+      "sha256": "00c6eb88c683cce3b18501fc9dea5cd5d0e30c97ca53ab943ee128e295c8f0b6",
       "platform": {
         "machine": "aarch64",
         "python": "cpython-312"

@@ -9,8 +9,11 @@ from pathlib import Path
 from unittest.mock import patch
 
 import importlib.util
+import sys
 
-spec = importlib.util.spec_from_file_location('starlink_backend', Path(__file__).resolve().parents[1] / 'backend.py')
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+spec = importlib.util.spec_from_file_location('starlink.backend', Path(__file__).resolve().parents[1] / 'backend.py')
 backend = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(backend)
 

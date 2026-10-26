@@ -1,7 +1,7 @@
 {
   "id": "starlink",
   "name": "Starlink",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "api": 1,
   "use": "both",
   "category": "tools",
@@ -10,9 +10,9 @@
   "description": "Internet access using the existing mihomo VPN configuration. Local networks stay direct. Includes an offline ARM64 core, node selection and phone import. Not a satellite service.",
   "priority": 100,
   "enable_param": "ExtStarlinkEnabled",
-  "claims": ["process:starlinkd", "role:network.vpn", "ui.glyphs"],
+  "claims": ["process:starlinkd", "role:network.vpn", "ui.glyphs", "msg:network.vpn", "source:pluginMsg"],
   "platform": {"machine": "aarch64", "python": "cpython-312"},
-  "requires": {"hooks": ["processes", "ui_glyphs"], "native": {"machine": "aarch64", "python": "cpython-312"}},
+  "requires": {"hooks": ["processes", "ui_glyphs", "network_vpn"], "native": {"machine": "aarch64", "python": "cpython-312"}},
   "settings": [{"key": "ExtStarlinkConnect", "label": "Connect automatically"}],
   "params": {
     "ExtStarlinkEnabled": {"type": "BOOL", "default": "0"},

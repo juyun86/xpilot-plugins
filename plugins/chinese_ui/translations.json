@@ -3154,5 +3154,10 @@
   "vpn unavailable; retrying": "VPN 暂不可用，正在重试",
   "Vpn unavailable; retrying": "VPN 暂不可用，正在重试",
   "RECONNECT AFTER PARKING": "停车后重新连接",
-  "reconnect after parking": "停车后重新连接"
+  "reconnect after parking": "停车后重新连接",
+  "Not set": "未设置",
+  "Printable ASCII only": "仅支持可打印的 ASCII 字符",
+  "Maximum {count} characters": "最多输入 {count} 个字符",
+  "Manual Long Owner (wiper first detent)": "手动切换纵向控制（雨刷第一档）",
+  "When off, the DM processes do not start. Change only while parked; applies on the next drive.": "关闭后不启动驾驶员监控进程。仅可停车时更改，下次行程生效。"
 }

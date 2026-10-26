@@ -5,7 +5,7 @@
 
 ## 安装与操作
 
-适用 AGNOS、Linux ARM64、CPython 3.12。宿主需支持 processes 和 ui_glyphs。
+适用 AGNOS、Linux ARM64、CPython 3.12。1.1.0 要求宿主支持 processes、ui_glyphs 和 network_vpn。
 安装启用后完整重启软件或设备，在大屏 Starlink 磁贴打开控制页。
 未显示时可长按主页进入磁贴编辑，添加 Starlink。
 
@@ -48,14 +48,22 @@ Starlink 自有进程在退出后按退避策略重启，不改动宿主其他�
 
 SIGINT/TERM、停用和卸载会执行清理。工作代码保留只读文件描述符，
 保证商店移走插件目录后仍能停止内核并清理路由；无 shell 或任意命令执行接口。
-特权帮助程序只提供 prepare/startcore/stopcore/enable/disable/watch，
-启动和建路由要求停车；清理允许在异常退出时执行。
+特权操作已移到宿主固定 API，插件不再携带提权脚本；接口及资源归属见
+https://github.com/juyun86/xpilot/blob/xpilot/docs/design/xpilot-network-api.md 。
+启动、建路由及排队后的操作再次检查停车；清理只处理 root 所记录的自身资源。
+磁贴读取有效期 6 秒的 network.vpn 消息；后台失联后下一次刷新显示停止。
 私有配置不进入命令行；输入经 stdin，错误不回显原始内核校验输出。
 
 ## 维护与验证
 
 源自旧分支 d9522d2098 的 mihomo_manager、mihomo_gateway 和配对流程，已改为插件路径与受管生命周期。
-先运行 tests/test_backend.py 检查合成导入边界，再在停车设备运行 tests/parked_e2e.py。
+先运行 tests/contract_e2e.py 和 tests/test_backend.py 检查合成边界，再在停车设备运行 tests/parked_e2e.py。
 真实 E2E 会短暂重启本插件内核、移除自己的PID标记、损坏自己的TUN并恢复，以验证故障清理。
 不得伪造停车/点火状态，也不要输出真实节点、订阅或配对令牌。
 发布前运行仓库构建器和宿主商店检查，核对归档小于20 MiB、来源哈希和实装包可复现。
+
+build_native.py 从 core.json 中固定的 Mihomo 源码提交构建 ARM64 ELF，使用 Go 1.26、
+with_gvisor、CGO_ENABLED=0、trimpath 和固定 SOURCE_DATE_EPOCH。示例：
+python build_native.py --source /path/to/mihomo --go /path/to/go --output /tmp/mihomo
+加 --publish 才会替换随包核心和构建元数据；现有设备核心先校验兼容性，不自动覆盖。
+该源码重建使用固定时间和随源码 CA，不能把它称为与上游动态时间/CA 的发布资产逐字节相同。
