@@ -1,7 +1,7 @@
 {
   "id": "chinese_ui",
   "name": "Chinese UI",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "api": 1,
   "use": "both",
   "category": "tools",
@@ -10,7 +10,22 @@
   "description": "Simplified Chinese UI with a bundled font. Enable or disable, then restart the UI. No driving behavior changes.",
   "priority": 100,
   "enable_param": "ExtChineseUI",
-  "claims": ["role:ui.language"],
-  "requires": {"hooks": ["ui_language"], "params_abi": 1},
-  "params": {"ExtChineseUI": {"type": "BOOL", "default": "0", "aliases": ["XpilotChineseUI"]}}
+  "claims": [
+    "role:ui.language"
+  ],
+  "requires": {
+    "hooks": [
+      "ui_language"
+    ],
+    "params_abi": 1
+  },
+  "params": {
+    "ExtChineseUI": {
+      "type": "BOOL",
+      "default": "0",
+      "aliases": [
+        "XpilotChineseUI"
+      ]
+    }
+  }
 }

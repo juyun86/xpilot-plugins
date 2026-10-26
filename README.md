@@ -52,6 +52,9 @@ Trust comes from this reviewed repository, so only merge what you have read.
 
 ## Plugins
 
+- [tesnav](plugins/tesnav/README.md): 特会开手机导航、推荐车道显示与默认关闭的导航减速；
+  需要宿主 navigation_ingress API。当前不包含自动变道、打灯或导航模型输入。
+
 - [starlink](plugins/starlink/README.md): mihomo VPN internet access with an offline ARM64 core, local configuration,
   phone import and scoped routing cleanup. Requires the host ui_glyphs capability; not a satellite service.
 
