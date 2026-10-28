@@ -9,7 +9,7 @@ from openpilot.common.params import Params
 from openpilot.tesla.plugins import view
 from openpilot.tesla import plugins
 from .plugin import Starlink
-from . import client
+from . import client, session
 
 
 def write_state(data):
@@ -77,6 +77,7 @@ def main():
     signal.signal(signal.SIGINT, signal.SIG_IGN)
     signal.signal(signal.SIGTERM, signal.SIG_IGN)
     # A stopped session must be started deliberately again, including after onroad.
+    session.clear()
     settings.put_bool('ExtStarlinkConnect', False, block=True)
     client.stop_pair()
     try:

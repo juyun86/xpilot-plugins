@@ -35,11 +35,21 @@ def main():
   source = (ROOT / 'plugin.py').read_text(encoding='utf-8')
   selector = 'should_run' if 'def should_run(' in source else 'always'
   params = Params(IsOffroad=True, IsEngaged=False, ExtStarlinkConnect=False)
-  should = function(extract(ROOT / 'plugin.py', selector), {'ParamsView': lambda p: p})
+  class Session:
+    active = False
+    def requested(self): return self.active
+    def set_requested(self, value): self.active = value
+    def clear(self): self.active = False
+  session = Session()
+  should = function(extract(ROOT / 'plugin.py', selector), {'ParamsView': lambda p: p, 'session': session})
   assert not should(False, params, None), 'worker started without a user request'
   params.put_bool('ExtStarlinkConnect', True)
+  assert not should(False, params, None), 'stale persistent request survived reboot'
+  session.set_requested(True)
   assert should(False, params, None), 'parked user request ignored'
   assert not should(True, params, None), 'worker allowed onroad'
+  assert not session.requested() and not params.get_bool('ExtStarlinkConnect'), 'onroad request not cleared'
+  params.put_bool('ExtStarlinkConnect', True); session.set_requested(True)
   params.put_bool('IsEngaged', True)
   assert not should(False, params, None), 'worker allowed while engaged'
   params.put_bool('IsEngaged', False); params.put_bool('IsOffroad', False)
@@ -47,9 +57,9 @@ def main():
   params = Params()
   page = SimpleNamespace(message='', last=1, run=lambda *a: (_ for _ in ()).throw(AssertionError('backend race')))
   connect = function(extract(ROOT / 'ui.py', 'connect', 'StarlinkPage'),
-                     {'allowed': lambda: True, 'view': lambda _: params, 'ui_state': SimpleNamespace(params=params), 'tr': lambda s: s})
-  connect(page, True); assert params.get_bool('ExtStarlinkConnect')
-  connect(page, False); assert not params.get_bool('ExtStarlinkConnect')
+                     {'allowed': lambda: True, 'view': lambda _: params, 'ui_state': SimpleNamespace(params=params), 'tr': lambda s: s, 'session': session})
+  connect(page, True); assert params.get_bool('ExtStarlinkConnect') and session.requested()
+  connect(page, False); assert not params.get_bool('ExtStarlinkConnect') and not session.requested()
   print('manual request, parked gating, engaged/onroad stop and UI intent passed')
 
 

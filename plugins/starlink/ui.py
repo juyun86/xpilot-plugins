@@ -20,7 +20,7 @@ from openpilot.tesla.ui.pages.base import ListPage, Header
 from openpilot.tesla.ui.tile import Tile
 from openpilot.tesla.ui.tiles import TileSpec
 
-from . import client
+from . import client, session
 
 
 def allowed():
@@ -101,7 +101,12 @@ class StarlinkPage(AsyncPage):
   def connect(self, enabled):
     if not allowed():
       return
-    view(ui_state.params).put_bool('ExtStarlinkConnect', enabled, block=True)
+    session.set_requested(enabled)
+    try:
+      view(ui_state.params).put_bool('ExtStarlinkConnect', enabled, block=True)
+    except Exception:
+      session.clear()
+      raise
     self.message = tr('Starting VPN...') if enabled else tr('Stopping VPN...')
     self.last = 0.
 

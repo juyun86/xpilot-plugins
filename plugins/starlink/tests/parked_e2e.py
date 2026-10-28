@@ -12,7 +12,7 @@ import urllib.request
 from openpilot.common.params import Params
 from openpilot.cereal import messaging
 from openpilot.tesla import plugins
-from xpilot_ext.starlink import client
+from xpilot_ext.starlink import client, session
 
 params = Params()
 settings = plugins.view(params)
@@ -71,6 +71,7 @@ def unchanged():
   assert hashlib.sha256((root/'config.yaml').read_bytes()).hexdigest() == original
 
 
+session.set_requested(True)
 settings.put_bool('ExtStarlinkConnect', True, block=True)
 settings.put_bool('ExtStarlinkEnabled', True, block=True)
 wait_for(ready)
@@ -117,6 +118,7 @@ settings.put_bool('ExtStarlinkEnabled', False, block=True)
 wait_for(lambda: policy_count() == 0 and not (root/'pid').exists(), timeout=25)
 record('plugin_disable_cleanup', policy_removed=True)
 settings.put_bool('ExtStarlinkEnabled', True, block=True)
+session.set_requested(True)
 settings.put_bool('ExtStarlinkConnect', True, block=True)  # manual request after disable
 wait_for(ready)
 

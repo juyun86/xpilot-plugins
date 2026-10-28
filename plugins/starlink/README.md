@@ -9,7 +9,7 @@
 安装启用后完整重启软件或设备，在大屏 Starlink 磁贴打开控制页。
 未显示时可长按主页进入磁贴编辑，添加 Starlink。
 
-- 默认不连接且不驻留后台；停车后进入 Starlink 页面按“启动 VPN”，不用时按“停止 VPN”。
+- 默认不连接且不驻留后台；停车后进入 Starlink 页面按“启动 VPN”，不用时按“停止 VPN”。手动请求只存于本次开机的临时目录，断电重启不会自动恢复。
 - 支持订阅链接、Clash YAML、SS/VMess/VLESS/Trojan 节点链接。
 - 可在设备输入，也可让手机加入同一私有 Wi-Fi，扫描临时二维码导入。
 - 配对页面只绑定设备当前私有 wlan0 地址，十分钟有效，成功保存一次后关闭。
@@ -68,7 +68,7 @@ python build_native.py --source /path/to/mihomo --go /path/to/go --output /tmp/m
 加 --publish 才会替换随包核心和构建元数据；现有设备核心先校验兼容性，不自动覆盖。
 该源码重建使用固定时间和随源码 CA，不能把它称为与上游动态时间/CA 的发布资产逐字节相同。
 
-## 1.2.0 upstream host compatibility
+## 1.2.1 upstream host compatibility
 
 Requires the companion upstream host VPN and ui_glyphs capabilities. Status messages
 use the upstream plugin_msgd broker; this release is incompatible with pre-broker hosts.
