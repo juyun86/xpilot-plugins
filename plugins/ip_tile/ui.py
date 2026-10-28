@@ -1,6 +1,7 @@
 """IP tile: the address of the default route and the network type."""
 import socket
 
+from openpilot.system.ui.lib.multilang import tr
 from openpilot.tesla.ui.tile import Tile
 from openpilot.tesla.ui.tiles import TileSpec
 
@@ -12,14 +13,14 @@ def ip_address() -> str:
       s.connect(("8.8.8.8", 53))
       return s.getsockname()[0]
   except OSError:
-    return "offline"
+    return tr("offline")
 
 
 class IpTile(Tile):
   SPEC = TileSpec("ip", "IP", sizes=("medium", "wide", "small"), show="always", hz=0.2, order=80)
 
   def state(self, sm):
-    return ip_address(), str(sm["deviceState"].networkType).replace("NetworkType.", "")
+    return ip_address(), tr(str(sm["deviceState"].networkType).replace("NetworkType.", ""))
 
   def draw(self, rect, size, state):
     self.draw_lines(rect, list(state))

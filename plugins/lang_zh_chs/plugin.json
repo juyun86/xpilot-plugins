@@ -1,7 +1,7 @@
 {
   "id": "lang_zh_chs",
   "name": "简体中文语言包 / Simplified Chinese",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "api": 1,
   "use": "both",
   "category": "ui",
@@ -10,7 +10,9 @@
   "description": "Complete Simplified Chinese translation for the xpilot interface.",
   "priority": 100,
   "enable_param": "ExtLangZhChs",
-  "claims": ["lang:zh-CHS"],
+  "claims": [
+    "lang:zh-CHS"
+  ],
   "params": {
     "ExtLangZhChs": {
       "type": "BOOL",
