@@ -12,7 +12,10 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/ambient_light-1.1.0.tar.gz",
       "sha256": "cc3f6aa62ecb53fc660dbd0fefa4d46a2f4add74fd78d165f41e34b873293151",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "can.tx:0x679:1"
+      ]
     },
     {
       "id": "auto_speed",
@@ -25,7 +28,27 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/auto_speed-1.1.0.tar.gz",
       "sha256": "19fb68b2c79d39017f1bea71daa8b75d8b073f13df8e236b7e02e00fbc3bb229",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "can.tx:0x3C2:1"
+      ]
+    },
+    {
+      "id": "blendful",
+      "name": "Blendful (alpha)",
+      "version": "0.2.0",
+      "api": 1,
+      "category": "lateral_planning",
+      "author": "xpilot",
+      "description": "Port of sunnypilot Blendful (#2073, alpha): nudges the model's path toward the lane center when the lane lines are clear, and backs off when lines fade, the model goes around something, or during a lane change or turn. The correction builds at most 0.5 m/s^2 per second; the host caps it at 0.5 m/s^2 and SP's curvature limits still apply. Works with laneless models, not with lateral controller plugins that ignore the desired curvature. While engaged, a cyan line on the road shows the lane center Blendful steers toward; it fades as Blendful's trust in the lines drops (needs a host with RoadOverlay).",
+      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/blendful-0.2.0.tar.gz",
+      "sha256": "76c47e8377ea75cd5af95fde327931796d277a08d2f7022cf0ad850fa30c1a0f",
+      "platform": null,
+      "default": false,
+      "claims": [
+        "lat.correction",
+        "msg:blendful.state"
+      ]
     },
     {
       "id": "blindspot_edges",
@@ -38,7 +61,8 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/blindspot_edges-1.0.2.tar.gz",
       "sha256": "e66eb4bb05af6a53c5b6f12881a2f2ece1ce1eda77ccfb04cd79f53477b63ece",
       "platform": null,
-      "default": true
+      "default": true,
+      "claims": []
     },
     {
       "id": "bms",
@@ -51,7 +75,10 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/bms-1.1.0.tar.gz",
       "sha256": "9fb625a22262b0646327aef2cd6186532f19fd5e943dd3706d482289425d2365",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "msg:bms.state"
+      ]
     },
     {
       "id": "car_tile",
@@ -64,7 +91,8 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/car_tile-1.0.3.tar.gz",
       "sha256": "f7c8d66293a0b59ec2d0d3919748183816b600b469751e0332a9f081007015b8",
       "platform": null,
-      "default": true
+      "default": true,
+      "claims": []
     },
     {
       "id": "clock_tile",
@@ -77,7 +105,8 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/clock_tile-1.0.3.tar.gz",
       "sha256": "b72801d54f99a3653f477a16c5220e17a72a675f36ffdf7ed924551c52bd1931",
       "platform": null,
-      "default": true
+      "default": true,
+      "claims": []
     },
     {
       "id": "external_compute",
@@ -90,7 +119,11 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/external_compute-1.0.3.tar.gz",
       "sha256": "834f9e8bcdf149c210594a11c162bac5a51348bec2bbb6a9db00f10ac913ee23",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "process:externald",
+        "msg:external.in"
+      ]
     },
     {
       "id": "ip_tile",
@@ -103,20 +136,24 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/ip_tile-1.0.3.tar.gz",
       "sha256": "62a6e0e5f981c1c95029f24bbc825ec9eb0a9954ac00d2676c058c8ab7dae0fb",
       "platform": null,
-      "default": true
+      "default": true,
+      "claims": []
     },
     {
       "id": "lang_zh_chs",
       "name": "\u7b80\u4f53\u4e2d\u6587\u8bed\u8a00\u5305 / Simplified Chinese",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "api": 1,
       "category": "ui",
       "author": "xpilot",
       "description": "Complete Simplified Chinese translation for the xpilot interface.",
-      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/lang_zh_chs-1.0.0.tar.gz",
-      "sha256": "8cd4b63a11fcee3bcc0f1fc39ac1be5a37e37a542aacab041ff6aa9b02667be2",
+      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/lang_zh_chs-1.0.2.tar.gz",
+      "sha256": "097091bc0514c8819a3d4f396c52885302820dee970c07b95f7f801802ed634e",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "lang:zh-CHS"
+      ]
     },
     {
       "id": "lead_card",
@@ -129,7 +166,8 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/lead_card-1.0.3.tar.gz",
       "sha256": "e12a8e81a8b5ad375ed6bb7b79df13cda54fbe26843fac825dac3f44d20baa41",
       "platform": null,
-      "default": true
+      "default": true,
+      "claims": []
     },
     {
       "id": "lean_mici",
@@ -145,7 +183,13 @@
         "machine": "aarch64",
         "python": "cpython-312"
       },
-      "default": false
+      "default": false,
+      "claims": [
+        "role:perception.model",
+        "process:lean_modeld",
+        "msg:lean_mici.navigation",
+        "long.target"
+      ]
     },
     {
       "id": "map_tile",
@@ -158,20 +202,24 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/map_tile-1.0.3.tar.gz",
       "sha256": "f170e51acb05227f64c52cd6a8ee6cfb72ea2e5bfe270f3c233111e71e422e61",
       "platform": null,
-      "default": true
+      "default": true,
+      "claims": []
     },
     {
       "id": "nav_lane_change",
       "name": "Navigation Lane Change",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "api": 1,
       "category": "lateral_planning",
       "author": "xpilot",
-      "description": "Taps the turn stalk when the phone big model (lean_mici) predicts the driver's blinker (now or within 2 s) for 1 s, in that direction; SP's auto lane change does the rest. Only with an active route that the phone feeds to the model, never on single-lane roads, roundabouts, ramps or in tunnels (phone road data). 8 s apart, never with a car in that blind spot, while you steer, accelerate or brake, or below 30 km/h. Needs lean_mici 0.8+, SP auto lane change and the vehicle-bus harness.",
-      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/nav_lane_change-0.3.0.tar.gz",
-      "sha256": "768946fd65ddfc9146219ae3e943359604715d1f6ce27a620d93e99b1ec3ef62",
+      "description": "Taps the turn stalk when the phone big model (lean_mici) predicts the driver's blinker (now or within 2 s) for 1 s, in that direction; SP's auto lane change does the rest. Only with an active route that the phone feeds to the model, never on single-lane roads, roundabouts, ramps or in tunnels (phone road data). 8 s apart, never with a car in that blind spot, while you steer, accelerate or brake, or below 30 km/h. Needs lean_mici 0.8+, SP auto lane change and the vehicle-bus harness. Turn signal (on by default): when the route's next maneuver is a turn within the set distance and the car is below 17 km/h (under SP's 20 mph lane-change speed), it taps the stalk once so the blinker signals the turn; needs cruise engaged (panda rule).",
+      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/nav_lane_change-0.4.0.tar.gz",
+      "sha256": "cb86e9a44e6b48966ee90d0d7ab2a9443a29a3b0f52da6342871c4c2e48f92c6",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "can.tx:0x249:1"
+      ]
     },
     {
       "id": "op_models",
@@ -184,7 +232,11 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/op_models-1.0.1.tar.gz",
       "sha256": "a50da8122b4199d385d15915b8d94472218fb7dafa67b2693aca6631c410e166",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "role:perception.model",
+        "process:op_modeld"
+      ]
     },
     {
       "id": "overspeed_warning",
@@ -197,7 +249,10 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/overspeed_warning-1.0.2.tar.gz",
       "sha256": "7eae4e1493856479dd63ef59fd5d1011cf13f53ab349d406932dc5a7d74b9cea",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "alert"
+      ]
     },
     {
       "id": "speed_card",
@@ -210,7 +265,8 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/speed_card-1.0.3.tar.gz",
       "sha256": "e356e1d0c0644dd52d22905f579026bab0d50f9b50893f0cda690f150d47ef6a",
       "platform": null,
-      "default": true
+      "default": true,
+      "claims": []
     },
     {
       "id": "speed_limit_card",
@@ -223,7 +279,8 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/speed_limit_card-1.0.3.tar.gz",
       "sha256": "26e59d989e33e976547ee5ff9e279d83c351e07fb701740eea3971c9e8d156bf",
       "platform": null,
-      "default": true
+      "default": true,
+      "claims": []
     },
     {
       "id": "starlink",
@@ -244,15 +301,18 @@
     {
       "id": "tesla_dynamic_acc",
       "name": "Tesla Dynamic ACC",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "api": 1,
       "category": "longitudinal_planning",
       "author": "xpilot",
-      "description": "Speed-based longitudinal owner, like the old DynamicAutoStock: above High the stock ACC drives, below Low SP drives, in between the current owner stays. With Tesla Traffic Light Stop (tesla_tlssc) on, the stock ACC is proposed whenever the car shows a red/yellow light or a stop line, so the car can stop for it. Switches while engaged; the host (1 s confirm, 2 s cooldown, gas/brake/AEB/lead/acceleration vetoes) and the panda (DRAIN handoff) decide whether a switch happens. Needs SP longitudinal and the G8 panda firmware. Enable while parked, then restart.",
-      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/tesla_dynamic_acc-1.1.0.tar.gz",
-      "sha256": "398be780b75865725a41c77fcf37009e5fe8ebb5ff03320ebe5502b8772b7f12",
+      "description": "Speed-based longitudinal owner, like the old DynamicAutoStock: above High the stock ACC drives, below Low SP drives, in between the current owner stays. With Tesla Traffic Light Stop (tesla_tlssc) on, the stock ACC is proposed whenever the car shows a red/yellow light or a stop line, so the car can stop for it. Optional four-finger touch on the car screen switches to the other owner and keeps that choice until the next touch or until SP disengages (set MADS to 3 or 5 fingers if both are used). Switches while engaged; the host (1 s confirm, 2 s cooldown, gas/brake/AEB/lead/acceleration vetoes) and the panda (DRAIN handoff) decide whether a switch happens. Needs SP longitudinal and the G8 panda firmware. Enable while parked, then restart.",
+      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/tesla_dynamic_acc-1.2.0.tar.gz",
+      "sha256": "2805eae8f43b147e8baabb5735293d6eb604da41e95296a3280e5e2ad90fba65",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "role:long.owner"
+      ]
     },
     {
       "id": "tesla_eap",
@@ -265,33 +325,46 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/tesla_eap-1.0.0.tar.gz",
       "sha256": "d827f6e9e2da1d6189cfb32bff2e1a031f6830abcdd28167d7622fe577764b06",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "role:stock.ap",
+        "role:engagement.state",
+        "can.tx:0x249:1"
+      ]
     },
     {
       "id": "tesla_mixed_control",
       "name": "Tesla Mixed Control",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "api": 1,
       "category": "controller",
       "author": "xpilot; dzid26; Haibin Wen and sunnypilot contributors",
       "description": "Angle-based cooperative steering: light driver torque adjusts the SP steering target with speed-dependent effort. SP must own steering; stock Autosteer must not steer at the same time (AP ownership/handoff is not implemented). Enable while parked, then restart. Overrides native TeslaCoopSteering mode for this session without changing its saved setting. Host-tested only; vehicle validation is pending.",
-      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/tesla_mixed_control-1.1.1.tar.gz",
-      "sha256": "64f18e8c997c51cd50da763fb75d6d59f817dc946f8acee183c1d5250bda007d",
+      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/tesla_mixed_control-1.2.0.tar.gz",
+      "sha256": "24b782c8c9392beb4e93eb490490ed54ec566d226f7e2142be737e0af0fb4008",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "role:lateral.controller",
+        "event.filter"
+      ]
     },
     {
       "id": "tesla_tlssc",
       "name": "Tesla Traffic Light Stop",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "api": 1,
       "category": "longitudinal_planning",
       "author": "xpilot",
       "description": "Turns on the car's own Traffic Light and Stop Sign Control (TLSSC) between two speeds you set, like t2can: it re-sends the car's UI_autopilotControl (0x3FD mux 0) with bits 38/39 set while cruise is on. The car stops only while the stock ACC drives; Tesla Dynamic ACC 1.1+ hands longitudinal to the stock ACC when the car shows a red/yellow light or a stop line. Needs the vehicle-bus harness. Unverified on this car: whether TLSSC acts while SP steers.",
-      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/tesla_tlssc-1.0.0.tar.gz",
-      "sha256": "cfa9774f3c1aace2985afb7eb1e15a439deaf8dff806b97b871475eadbed1af8",
+      "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/tesla_tlssc-1.1.0.tar.gz",
+      "sha256": "85033cf7cbc88bdea3dbd9d1691fa6b4a3b8eed084f0111575c88f8852b4c417",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "can.tx:0x3FD:1",
+        "msg:tlssc.state"
+      ]
     },
     {
       "id": "traffic_light",
@@ -304,7 +377,14 @@
       "url": "https://raw.githubusercontent.com/onemiless/xpilot-plugins/main/dist/traffic_light-1.1.0.tar.gz",
       "sha256": "d9f20c4051c6ecf374e8fcb8a8516853f7aa656fe9ded3763d67e0c425446a70",
       "platform": null,
-      "default": false
+      "default": false,
+      "claims": [
+        "plan.filter",
+        "process:trafficcontrold",
+        "msg:traffic.observation",
+        "msg:traffic.target",
+        "msg:traffic.plan"
+      ]
     }
   ]
 }
