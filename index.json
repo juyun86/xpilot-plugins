@@ -296,7 +296,13 @@
         "machine": "aarch64",
         "python": "cpython-312"
       },
-      "default": false
+      "default": false,
+      "claims": [
+        "process:starlinkd",
+        "role:network.vpn",
+        "ui.glyphs",
+        "msg:network.vpn"
+      ]
     },
     {
       "id": "tesla_dynamic_acc",
