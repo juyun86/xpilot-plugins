@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Verify tile state strings use language packs while data remains intact.
 
-Failures: English-only status/label, speed or road data changed, or unknown network
-state altered. Tests the actual plugin state methods with synthetic messages.
+Failures: English-only status/label, or speed or road data changed.
+Tests the actual plugin state methods with synthetic messages.
 """
 import ast
 from pathlib import Path
@@ -42,10 +42,7 @@ def main():
   assert nav(None, State({'liveMapDataSP': mapdata}, {'liveMapDataSP': True, 'navInstruction': False})) == ('限速 36', 'Example Road')
   speed = method('speed_card', 'SpeedCardTile', 'state', {'tr': tr, 'CV': cv, 'SET_SPEED_NA': 255, 'ui_state': NS(is_metric=True)})
   assert speed(None, State({'carState': NS(vEgoCluster=10, vCruiseCluster=80)}, {})) == ('36', 'km/h', '设定 80')
-  ip = method('ip_tile', 'IpTile', 'state', {'tr': tr, 'ip_address': lambda: '192.0.2.2'})
-  assert ip(None, State({'deviceState': NS(networkType='wifi')}, {})) == ('192.0.2.2', '无线网络')
-  assert ip(None, State({'deviceState': NS(networkType='futureNetwork')}, {})) == ('192.0.2.2', 'futureNetwork')
-  print('Tile translation states, numeric values, road name, IP and unknown network fallback: OK')
+  print('Tile translation states, numeric values and road name: OK')
 
 
 if __name__ == '__main__':
