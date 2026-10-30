@@ -1,7 +1,7 @@
 {
   "id": "starlink",
   "name": "Starlink",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "api": 1,
   "use": "both",
   "category": "tools",
@@ -13,7 +13,6 @@
   "claims": [
     "process:starlinkd",
     "role:network.vpn",
-    "ui.glyphs",
     "msg:network.vpn"
   ],
   "platform": {
@@ -23,7 +22,6 @@
   "requires": {
     "hooks": [
       "processes",
-      "ui_glyphs",
       "network_vpn"
     ],
     "native": {

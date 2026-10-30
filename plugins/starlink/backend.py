@@ -34,9 +34,10 @@ def normalize(raw):
 
 def pid():
   try:
-    p = int((ROOT / 'pid').read_text())
-    if Path(f'/proc/{p}').stat().st_uid == 61400 and Path(f'/proc/{p}/cmdline').read_bytes().split(b'\0')[0] == str(CORE).encode(): return p
-  except (OSError, ValueError): pass
+    value = gateway('status').get('pid')
+    if type(value) is int and value > 0:
+      return value
+  except (OSError, ValueError, RuntimeError): pass
   return None
 
 def api(path, payload=None, timeout=4):
@@ -57,7 +58,7 @@ def stop():
 
 def tun_ready():
   try:
-    if not (ROOT / 'gateway_enabled').exists() or Path('/sys/class/net/c3mh0/carrier').read_text().strip() != '1': return False
+    if Path('/sys/class/net/c3mh0/carrier').read_text().strip() != '1': return False
     routes = subprocess.run(['ip', 'route', 'show', 'table', '17890'], capture_output=True, text=True, timeout=2).stdout
     rules = json.loads(subprocess.run(['ip', '-j', 'rule'], capture_output=True, text=True, timeout=2).stdout)
     return 'default dev c3mh0' in routes and any(r.get('priority') == 17880 and str(r.get('table')) == '17890' for r in rules)

@@ -16,15 +16,6 @@ def should_run(started, params, CP):
 
 class Starlink(Plugin):
   @classmethod
-  def ui_glyphs(cls):
-    from .client import call
-    try:
-      labels = call('labels', timeout=3).get('labels', [])
-      return ''.join(c for text in labels for c in text if ord(c) < 65536 and c.isprintable())[:16384]
-    except Exception:
-      return ''
-
-  @classmethod
   def processes(cls):
     from .process import RestartingProcess
     return [RestartingProcess('starlinkd', f'{__package__}.service', should_run)]

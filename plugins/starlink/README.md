@@ -1,3 +1,5 @@
+> 隔离候选，权限与启停验证尚未完成，不是可安装或发布版本。
+
 # Starlink
 
 将原 dev-sp 分支的 mihomo/Clash 上网功能迁移为插件。Starlink 是插件名，不是卫星网络服务。
@@ -5,7 +7,7 @@
 
 ## 安装与操作
 
-适用 AGNOS、Linux ARM64、CPython 3.12。1.1.0 要求宿主支持 processes、ui_glyphs 和 network_vpn。
+适用 AGNOS、Linux ARM64、CPython 3.12。1.2.2 候选要求宿主支持 processes 和 network_vpn。
 安装启用后完整重启软件或设备，在大屏 Starlink 磁贴打开控制页。
 未显示时可长按主页进入磁贴编辑，添加 Starlink。
 
@@ -29,20 +31,20 @@
 内核来源、版本与哈希见 core.json；上游许可证见 MIHOMO-LICENSE.txt。
 
 公共 IPv4 经专用 c3mh0 / 表17890路由；本机、RFC1918私网、链路本地和组播保持直连。
-不改系统默认路由或 DNS 配置文件；DNS转发和热点规则只使用 C3MH_* 链。
+不改系统默认路由或 DNS 配置文件；DNS 转发使用受管 C3MH_* 链；该候选不提供热点设备共享 VPN。
 IPv6 没有被本插件全局接管，不能据此宣称全协议流量都经过 VPN。
 内核以专用 UID 61400 运行，避免代理自身再次进入 TUN。
 若相同 UID、端口17890/17891/17893/17894、接口或路由表被其他服务使用，应先解决冲突。
 
 只复用系统已有 Python/YAML 和宿主二维码组件。后端使用系统 Python 的 YAML 包，
 不会为此修改 openpilot 虚拟环境。系统没有 YAML、TUN 或 sudo 权限时显示错误，不应静默安装软件。
-节点汉字依赖已选择的语言包字体；ui_glyphs 在 UI 启动时仅取节点显示名补齐字形。
-新增订阅带来新文字时，重启软件加载字形。不支持的装饰性非BMP表情可被显示层省略，
+节点文字依赖宿主和语言包已有字体；未覆盖的字形可能无法显示。
+新的订阅名称若含字体未覆盖的字形，显示可能不完整。不支持的装饰性非BMP表情可被显示层省略，
 但选择节点时始终传递完整原名。
 
 ## 生命周期
 
-声明 process:starlinkd、role:network.vpn、ui.glyphs。
+声明 process:starlinkd、role:network.vpn。
 ExtStarlinkEnabled 是总开关，默认关闭；ExtStarlinkConnect 是连接意图，默认开启。
 Starlink 自有进程在退出后按退避策略重启，不改动宿主其他进程的重启政策。
 
@@ -70,6 +72,6 @@ python build_native.py --source /path/to/mihomo --go /path/to/go --output /tmp/m
 
 ## 1.2.1 upstream host compatibility
 
-Requires the companion upstream host VPN and ui_glyphs capabilities. Status messages
+Requires the companion upstream host VPN capability. Status messages
 use the upstream plugin_msgd broker; this release is incompatible with pre-broker hosts.
 The host API owns bounded VPN operations, routing and independent crash cleanup.
